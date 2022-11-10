@@ -16,18 +16,6 @@ variable "fr_domain_name" {
   type = string
 }
 
-#variable "app_domain_name" {
-#  type = string
-#}
-
-variable "hosted_zone_id" {
-  type = string
-}
-
-variable "fr_hosted_zone_id" {
-  type = string
-}
-
 variable "google_analytics_id" {
   type      = string
   sensitive = true
