@@ -137,7 +137,7 @@ resource "aws_amplify_domain_association" "learning_resources_en" {
 resource "aws_amplify_domain_association" "learning_resources_fr" {
   count = var.env != "staging" ? 1 : 0
 
-  app_id = aws_amplify_app.learning_resources.id
+  app_id      = aws_amplify_app.learning_resources.id
   domain_name = var.fr_domain_name
 
   wait_for_verification = false
