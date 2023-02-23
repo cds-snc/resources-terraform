@@ -87,7 +87,7 @@ resource "aws_amplify_branch" "main" {
 
 resource "aws_amplify_domain_association" "learning_resources_en" {
 
-  app_id = aws_amplify_app.learning_resources.id
+  app_id      = aws_amplify_app.learning_resources.id
   domain_name = var.domain_name
 
   wait_for_verification = false
@@ -139,15 +139,15 @@ resource "aws_amplify_branch" "lr_staging" {
   pull_request_environment_name = "PULL_REQUEST"
 
   environment_variables = {
-    ENV                         = var.env
-    DOMAIN_EN                   = "staging.${var.domain_name}"
-    DOMAIN_FR                   = "staging.${var.fr_domain_name}"
+    ENV       = var.env
+    DOMAIN_EN = "staging.${var.domain_name}"
+    DOMAIN_FR = "staging.${var.fr_domain_name}"
   }
 }
 
 resource "aws_amplify_domain_association" "learning_resources_staging_en" {
 
-  app_id = aws_amplify_app.learning_resources.id
+  app_id      = aws_amplify_app.learning_resources.id
   domain_name = "staging.${var.domain_name}"
 
   wait_for_verification = false
@@ -165,7 +165,7 @@ resource "aws_amplify_domain_association" "learning_resources_staging_en" {
 
 resource "aws_amplify_domain_association" "learning_resources_staging_fr" {
 
-  app_id = aws_amplify_app.learning_resources.id
+  app_id      = aws_amplify_app.learning_resources.id
   domain_name = "staging.${var.fr_domain_name}"
 
   wait_for_verification = false

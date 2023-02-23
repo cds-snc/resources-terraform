@@ -1,5 +1,5 @@
 resource "aws_route53_record" "NS-resources-cdssandbox-xyz" {
-  count = var.env == "staging" ? 1 : 0
+  count   = var.env == "staging" ? 1 : 0
   zone_id = aws_route53_zone.en_learning_resources.zone_id
   name    = "resources.cdssandbox.xyz."
   type    = "NS"
@@ -8,7 +8,7 @@ resource "aws_route53_record" "NS-resources-cdssandbox-xyz" {
 }
 
 resource "aws_route53_record" "SOA-resources-cdssandbox-xyz" {
-  count = var.env == "staging" ? 1 : 0
+  count   = var.env == "staging" ? 1 : 0
   zone_id = aws_route53_zone.en_learning_resources.zone_id
   name    = "resources.cdssandbox.xyz."
   type    = "SOA"

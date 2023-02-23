@@ -67,7 +67,7 @@ resource "aws_amplify_app" "lr_contentful_preview" {
 }
 
 resource "aws_amplify_branch" "lr_contentful_preview_staging" {
-  count = var.env == "staging" ? 1 : 0
+  count       = var.env == "staging" ? 1 : 0
   app_id      = one(aws_amplify_app.lr_contentful_preview[*].id)
   branch_name = "staging"
 
@@ -98,7 +98,7 @@ resource "aws_amplify_branch" "lr_contentful_preview_staging" {
 }
 
 resource "aws_amplify_domain_association" "lr_contentful_preview_en" {
-  count = var.env == "staging" ? 1 : 0
+  count       = var.env == "staging" ? 1 : 0
   app_id      = one(aws_amplify_app.lr_contentful_preview[*].id)
   domain_name = "preview.${var.domain_name}"
 
@@ -117,7 +117,7 @@ resource "aws_amplify_domain_association" "lr_contentful_preview_en" {
 }
 
 resource "aws_amplify_domain_association" "lr_contentful_preview_fr" {
-  count = var.env == "staging" ? 1 : 0
+  count       = var.env == "staging" ? 1 : 0
   app_id      = one(aws_amplify_app.lr_contentful_preview[*].id)
   domain_name = "preview.${var.fr_domain_name}"
 

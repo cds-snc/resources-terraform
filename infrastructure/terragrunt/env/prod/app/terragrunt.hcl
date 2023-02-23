@@ -2,9 +2,9 @@ terraform {
   source = "../../../aws//app"
 }
 
-dependencies {
-  paths = ["../hosted-zone"]
-}
+#dependencies {
+#  paths = ["../hosted-zone"]
+#}
 
 inputs = {
   domain_name      = "resources.alpha.canada.ca"

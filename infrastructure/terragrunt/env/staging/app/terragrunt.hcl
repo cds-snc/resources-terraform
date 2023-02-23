@@ -2,12 +2,12 @@ terraform {
   source = "../../../aws//app"
 }
 
-dependencies {
-  paths = ["../hosted-zone"]
-}
+#dependencies {
+#  paths = ["../hosted-zone"]
+#}
 
 inputs = {
-  domain_name = "resources.cdssandbox.xyz"
+  domain_name      = "resources.cdssandbox.xyz"
   zone_name        = "resources.cdssandbox.xyz"
   fr_zone_name     = "ressources.cdssandbox.xyz"
   legacy_zone_name = "learning-resources.cdssandbox.xyz"
