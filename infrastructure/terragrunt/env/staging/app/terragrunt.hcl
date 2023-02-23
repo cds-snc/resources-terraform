@@ -7,11 +7,10 @@ dependencies {
 }
 
 inputs = {
-  domain_name    = "learning-resources.cdssandbox.xyz"
-  #  app_hosted_zone_id = dependency.hosted_zone.outputs.app_zone_id
-  #  app_domain_name    = "app.learning-resources.cdssandbox.xyz"
-  zone_name    = "learning-resources.cdssandbox.xyz"
-  fr_zone_name = ""
+  domain_name = "resources.cdssandbox.xyz"
+  zone_name        = "resources.cdssandbox.xyz"
+  fr_zone_name     = "ressources.cdssandbox.xyz"
+  legacy_zone_name = "learning-resources.cdssandbox.xyz"
 }
 
 include {

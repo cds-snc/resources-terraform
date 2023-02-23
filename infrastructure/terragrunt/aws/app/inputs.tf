@@ -31,6 +31,20 @@ variable "sentry_dsn" {
   sensitive = true
 }
 
+variable "contentful_cpa_access_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "contentful_space_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "contentfulprev_auth" {
+  type      = string
+  sensitive = true
+}
 #variable "env" {
 #  type      = string
 #  sensitive = true

@@ -39,11 +39,17 @@ resource "aws_amplify_app" "learning_resources" {
     DOMAIN_EN                   = var.domain_name
     DOMAIN_FR                   = var.fr_domain_name
     contentful_cda_access_token = var.contentful_cda_access_token
+    contentful_space_id         = var.contentful_space_id
     GOOGLE_ANALYTICS_ID         = var.google_analytics_id
     GOOGLE_TAG_MANAGER_ID       = var.google_tag_manager_id
     SENTRY_DSN                  = var.sentry_dsn
-  }
 
+    PREVIEW_ENV = "false"
+
+    # Feature flags
+    F_HEADLINE     = "true"
+    F_HEADLINE_ALT = "false"
+  }
 
   enable_auto_branch_creation = true
   enable_branch_auto_deletion = true
@@ -76,49 +82,12 @@ resource "aws_amplify_branch" "main" {
 
   display_name = "production"
 
-  enable_pull_request_preview = true
-
-  pull_request_environment_name = "RELEASE"
-
-  # environment_variables = {
-  # }
-}
-
-resource "aws_amplify_domain_association" "learning_resources" {
-  count = var.env == "staging" ? 1 : 0
-
-  app_id = aws_amplify_app.learning_resources.id
-  #  domain_name = "learning-resources.cdssandbox.xyz"
-  domain_name = var.domain_name
-
-  wait_for_verification = false
-
-  sub_domain {
-    branch_name = aws_amplify_branch.main.branch_name
-    prefix      = ""
-  }
-
-  sub_domain {
-    branch_name = aws_amplify_branch.main.branch_name
-    prefix      = "en"
-  }
-
-  sub_domain {
-    branch_name = aws_amplify_branch.main.branch_name
-    prefix      = "fr"
-  }
-
-  sub_domain {
-    branch_name = aws_amplify_branch.main.branch_name
-    prefix      = "www"
-  }
+  enable_pull_request_preview = false
 }
 
 resource "aws_amplify_domain_association" "learning_resources_en" {
-  count = var.env != "staging" ? 1 : 0
 
   app_id = aws_amplify_app.learning_resources.id
-  #  domain_name = "learning-resources.cdssandbox.xyz"
   domain_name = var.domain_name
 
   wait_for_verification = false
@@ -135,7 +104,6 @@ resource "aws_amplify_domain_association" "learning_resources_en" {
 }
 
 resource "aws_amplify_domain_association" "learning_resources_fr" {
-  count = var.env != "staging" ? 1 : 0
 
   app_id      = aws_amplify_app.learning_resources.id
   domain_name = var.fr_domain_name
@@ -154,8 +122,7 @@ resource "aws_amplify_domain_association" "learning_resources_fr" {
 }
 
 
-resource "aws_amplify_branch" "alpha_staging" {
-  count = var.env != "staging" ? 1 : 0
+resource "aws_amplify_branch" "lr_staging" {
 
   app_id      = aws_amplify_app.learning_resources.id
   branch_name = "staging"
@@ -171,27 +138,45 @@ resource "aws_amplify_branch" "alpha_staging" {
 
   pull_request_environment_name = "PULL_REQUEST"
 
-  # environment_variables = {
-  # }
+  environment_variables = {
+    ENV                         = var.env
+    DOMAIN_EN                   = "staging.${var.domain_name}"
+    DOMAIN_FR                   = "staging.${var.fr_domain_name}"
+  }
 }
 
 resource "aws_amplify_domain_association" "learning_resources_staging_en" {
-  count = var.env != "staging" ? 1 : 0
-  # staging account in aws prod?
 
   app_id = aws_amplify_app.learning_resources.id
-  #  domain_name = "learning-resources.cdssandbox.xyz"
   domain_name = "staging.${var.domain_name}"
 
   wait_for_verification = false
 
   sub_domain {
-    branch_name = one(aws_amplify_branch.alpha_staging[*].branch_name)
+    branch_name = aws_amplify_branch.lr_staging.branch_name
     prefix      = ""
   }
 
   sub_domain {
-    branch_name = one(aws_amplify_branch.alpha_staging[*].branch_name)
+    branch_name = aws_amplify_branch.lr_staging.branch_name
+    prefix      = "www"
+  }
+}
+
+resource "aws_amplify_domain_association" "learning_resources_staging_fr" {
+
+  app_id = aws_amplify_app.learning_resources.id
+  domain_name = "staging.${var.fr_domain_name}"
+
+  wait_for_verification = false
+
+  sub_domain {
+    branch_name = aws_amplify_branch.lr_staging.branch_name
+    prefix      = ""
+  }
+
+  sub_domain {
+    branch_name = aws_amplify_branch.lr_staging.branch_name
     prefix      = "www"
   }
 }

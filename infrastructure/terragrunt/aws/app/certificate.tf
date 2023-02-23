@@ -32,7 +32,7 @@ resource "aws_acm_certificate" "fr" {
 }
 
 resource "aws_route53_record" "validation_main" {
-  zone_id = aws_route53_zone.learning_resources.zone_id
+  zone_id = aws_route53_zone.en_learning_resources.zone_id
 
   for_each = {
     for dvo in aws_acm_certificate.main.domain_validation_options : dvo.domain_name => {

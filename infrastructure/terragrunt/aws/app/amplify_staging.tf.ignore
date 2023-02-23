@@ -38,8 +38,8 @@ resource "aws_amplify_app" "learning_resources_staging" {
 
   environment_variables = {
     ENV                         = "staging"
-    DOMAIN_EN                   = "en.staging.learning-resources.cdssandbox.xyz"
-    DOMAIN_FR                   = "fr.staging.learning-resources.cdssandbox.xyz"
+    DOMAIN_EN                   = "resources.cdssandbox.xyz"
+    DOMAIN_FR                   = "ressources.cdssandbox.xyz"
     contentful_cda_access_token = var.contentful_cda_access_token
     GOOGLE_ANALYTICS_ID         = "" # Do not collect data
     GOOGLE_TAG_MANAGER_ID       = var.google_tag_manager_id
