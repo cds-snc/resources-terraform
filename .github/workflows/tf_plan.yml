@@ -55,11 +55,11 @@ jobs:
           role-to-assume: arn:aws:iam::236007890657:role/resources-terraform-plan
           aws-region: 'ca-central-1'
 
-      - name: Terraform plan (production) app
+      - name: Terraform plan staging app
         uses: cds-snc/terraform-plan@v3
         with:
           comment-delete: true
           comment-title: TF Plan for ${{ matrix.module }}
-          directory: infrastructure/terragrunt/env/prod/${{ matrix.module }}
+          directory: infrastructure/terragrunt/env/staging/${{ matrix.module }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           terragrunt: true

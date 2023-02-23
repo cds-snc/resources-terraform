@@ -59,6 +59,6 @@ jobs:
           role-to-assume: arn:aws:iam::236007890657:role/resources-terraform-apply
           aws-region: 'ca-central-1'
 
-      - name: Terragrunt (production) apply ${{ matrix.module }}
-        working-directory: infrastructure/terragrunt/env/prod/${{ matrix.module }}
+      - name: Terragrunt apply staging ${{ matrix.module }}
+        working-directory: infrastructure/terragrunt/env/staging/${{ matrix.module }}
         run: terragrunt apply --terragrunt-non-interactive -auto-approve
