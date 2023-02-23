@@ -46,9 +46,9 @@ jobs:
         uses: cds-snc/terraform-tools-setup@v1
 
       - name: Set INFRASTRUCTURE_VERSION
-          run: |
-            INFRASTRUCTURE_VERSION=`cat ./.github/workflows/infrastructure_version.txt`
-            echo "INFRASTRUCTURE_VERSION=$INFRASTRUCTURE_VERSION" >> $GITHUB_ENV
+        run: |
+          INFRASTRUCTURE_VERSION=`cat ./.github/workflows/infrastructure_version.txt`
+          echo "INFRASTRUCTURE_VERSION=$INFRASTRUCTURE_VERSION" >> $GITHUB_ENV
 
       - name: configure aws credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v1
