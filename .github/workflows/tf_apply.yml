@@ -1,13 +1,12 @@
 name: Terraform Apply
 on:
-#  workflow_dispatch:
-#  push:
-#    branches:
-#      - main
-#      - staging
-#    paths:
-#      - "terragrunt/**"
-#      - ".github/workflows/**"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "terragrunt/**"
+      - ".github/workflows/**"
       
 env:
   TERRAFORM_VERSION: 1.3.9
