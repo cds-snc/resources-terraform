@@ -1,5 +1,6 @@
 terraform {
-  source = "git::https://github.com/cds-snc/resources-terraform//infrastructure/terragrunt/aws/app?ref=v${get_env("INFRASTRUCTURE_VERSION")}"
+  source = "../../../aws//app"
+  #  source = "git::https://github.com/cds-snc/resources-terraform//infrastructure/terragrunt/aws/app?ref=v${get_env("INFRASTRUCTURE_VERSION")}"
 }
 
 #dependencies {
