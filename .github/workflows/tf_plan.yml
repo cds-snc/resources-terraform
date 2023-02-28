@@ -6,7 +6,7 @@ on:
       - "terragrunt/**"
       - ".github/workflows/**"
 env:
-  TERRAFORM_VERSION: 1.0.7
+  TERRAFORM_VERSION: 1.3.9
   TERRAGRUNT_VERSION: 0.31.1
   CONFTEST_VERSION: 0.27.0
   TF_VAR_contentful_cda_access_token: ${{ secrets.CONTENTFUL_CDA_ACCESS_TOKEN }}
@@ -52,14 +52,14 @@ jobs:
       - name: configure aws credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::236007890657:role/resources-terraform-plan
+          role-to-assume: arn:aws:iam::774443804833:role/resources-terraform-plan
           aws-region: 'ca-central-1'
 
-      - name: Terraform plan staging app
+      - name: Terraform plan (production) app
         uses: cds-snc/terraform-plan@v3
         with:
           comment-delete: true
           comment-title: TF Plan for ${{ matrix.module }}
-          directory: infrastructure/terragrunt/env/staging/${{ matrix.module }}
+          directory: infrastructure/terragrunt/env/prod/${{ matrix.module }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           terragrunt: true
