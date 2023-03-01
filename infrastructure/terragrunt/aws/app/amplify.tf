@@ -29,10 +29,11 @@ resource "aws_amplify_app" "learning_resources" {
       phases:
         preTest:
           commands:
-            - npm ci
-            - npm install -g pm2
-            - npm install -g wait-on
-            - npm install mocha mochawesome mochawesome-merge mochawesome-report-generator
+            - cd app
+            - npm ci --legacy-peer-deps
+            - npm install --legacy-peer-deps -g pm2
+            - npm install --legacy-peer-deps -g wait-on
+            - npm install --legacy-peer-deps mocha mochawesome mochawesome-merge mochawesome-report-generator
             - pm2 start npm -- start
             - wait-on http://localhost:3000
         test:
