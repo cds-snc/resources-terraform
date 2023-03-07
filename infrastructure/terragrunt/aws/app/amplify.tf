@@ -44,7 +44,7 @@ resource "aws_amplify_app" "learning_resources" {
             - npx mochawesome-merge cypress/report/mochawesome-report/mochawesome*.json > cypress/report/mochawesome.json
             - pm2 kill
       artifacts:
-        baseDirectory: cypress
+        baseDirectory: app/dist
         configFilePath: '**/mochawesome.json'
         files:
           - '**/*.png'
