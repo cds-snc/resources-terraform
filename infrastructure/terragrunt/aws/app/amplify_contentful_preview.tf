@@ -61,9 +61,6 @@ resource "aws_amplify_app" "lr_contentful_preview" {
   # The default patterns added by the Amplify Console.
   auto_branch_creation_patterns = [
   ]
-
-  auto_branch_creation_config {
-  }
 }
 
 resource "aws_amplify_branch" "lr_contentful_preview_staging" {
