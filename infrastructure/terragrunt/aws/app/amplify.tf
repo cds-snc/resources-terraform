@@ -12,6 +12,7 @@ resource "aws_amplify_app" "learning_resources" {
       phases:
         preBuild:
           commands:
+            - nvm install 16 # Install Node.js 16
             - cd app
             - cp .contentful.json.sample .contentful.json
             - npm install --legacy-peer-deps

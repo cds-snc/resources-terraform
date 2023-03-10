@@ -14,6 +14,7 @@ resource "aws_amplify_app" "lr_contentful_preview" {
       phases:
         preBuild:
           commands:
+            - nvm install 16
             - cd app
             - cp .contentful.json.sample .contentful.json
             - npm install --legacy-peer-deps
@@ -27,6 +28,30 @@ resource "aws_amplify_app" "lr_contentful_preview" {
       cache:
         paths:
           - node_modules/**/*
+    test:
+      phases:
+        preTest:
+          commands:
+            - cd app
+            - npm ci --legacy-peer-deps
+            - npm install --legacy-peer-deps -g pm2
+            - npm install --legacy-peer-deps -g wait-on
+            - npm install --legacy-peer-deps mocha mochawesome mochawesome-merge mochawesome-report-generator
+            - pm2 start npm -- start
+            - wait-on http://localhost:3000
+        test:
+          commands:
+            - 'npx cypress run --reporter mochawesome --reporter-options "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"'
+        postTest:
+          commands:
+            - npx mochawesome-merge cypress/report/mochawesome-report/mochawesome*.json > cypress/report/mochawesome.json
+            - pm2 kill
+      artifacts:
+        baseDirectory: app/dist
+        configFilePath: '**/mochawesome.json'
+        files:
+          - '**/*.png'
+          - '**/*.mp4'
   EOT
 
   # The default rewrites and redirects added by the Amplify Console.
