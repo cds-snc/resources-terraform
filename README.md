@@ -1,10 +1,7 @@
-# Generic Project Template
+# Website is no longer maintained / Le Site web n'est plus accessible 
 
-This repository provides some base files for setting up a repository at
-CDS. Plan is to create more project template for specific technologies:
+As of April 2023, work on the Learning Resources service has wrapped up. The website has been archived and is no longer available.
+If you have questions please contact us at cds-snc@tbs-sct.gc.ca. 
 
-- project-template-terraform
-- project-template-python
-- project-template-nodejs
-
-Note that default community health files are maintained at https://github.com/cds-snc/.github 
+Le service des ressources d’apprentissage a été mis hors service à compter d’avril 2023. Le site Web a été archivé et n’est plus accessible.
+Pour toute question, veuillez écrire à cds-snc@tbs-sct.gc.ca.
